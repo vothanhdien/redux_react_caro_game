@@ -27,11 +27,12 @@ const todos = (state = [], action) => {
                 }
             ];
         case type.CLICK_SQUARE_TODO:
-            return state.map(todo =>
-                (todo.id === action.id)
-                    ? {...todo, completed: !todo.completed}
-                    : todo
-            );
+            return [
+                ...state,
+                {
+                    id: action.id
+                }
+            ];
         case type.TOGGLE_TODO:
             return state.map(todo =>
                 (todo.id === action.id)

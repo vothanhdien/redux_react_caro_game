@@ -12,12 +12,12 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import todoApp from './reducers'
 import App from './components/App'
-
-let store = createStore(todoApp)
+import Game from './components/Game'
+let store = createStore(todoApp);
 
 render(
     <Provider store={store}>
-        <App />
+        <Game />
     </Provider>,
     document.getElementById('root')
 );

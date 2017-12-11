@@ -4,26 +4,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions/index'
-
+import Square from '../containers/Square'
 let Game = ({ dispatch }) => {
     let input;
 
     return (
         <div>
             <div className="board-row">
-                <Square id="0"/>
-                <Square id="1"/>
-                <Square id="2"/>
+                <Square value="0"/>
+                <Square value="1"/>
+                <Square value="2"/>
             </div>
             <div className="board-row">
-                <Square id="3"/>
-                <Square id="4"/>
-                <Square id="5"/>
+                <Square value="3"/>
+                <Square value="4"/>
+                <Square value="5"/>
             </div>
             <div className="board-row">
-                <Square id="6"/>
-                <Square id="7"/>
-                <Square id="8"/>
+                <Square value="6"/>
+                <Square value="7"/>
+                <Square value="8"/>
             </div>
         </div>
     )
