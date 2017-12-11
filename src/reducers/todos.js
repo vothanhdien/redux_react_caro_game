@@ -2,21 +2,12 @@
  * Created by vtdien on 12/10/2017.
  */
 import * as type from '../constrants/ActionTypes';
-const  MAX = 3;
-const initialState = [{
-    history :[{
-        squares: new Array(MAX*MAX).fill(null),
-        row: null,
-        col: null,
-        player: "unknow",
-    }],
-    stepNumber: 0,
-    xIsNext: true,
-}];
 
 const todos = (state = [], action) => {
-    console.log(state);
+    //console.log(state);
+    //console.log(1);
     switch (action.type) {
+
         case type.ADD_TODO:
             return [
                 ...state,
