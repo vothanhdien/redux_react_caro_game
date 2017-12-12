@@ -4,18 +4,22 @@
 import React from 'react'
 import HistoryArea from '../containers/clickOnHistory'
 import BoardArea from '../containers/clickOnBoard'
-import * as R from 'react-bootstrap'
+import ChangeSize from '../containers/ChangeSize'
+import { Row, Grid, Col} from 'react-bootstrap'
 const Game = () => (
-    <R.Grid>
-        <R.Row>
-            <R.Col sm={8} md={9}>
+    <Grid>
+        <Row>
+            <ChangeSize/>
+        </Row>
+        <Row>
+            <Col sm={8} md={9}>
                 <BoardArea />
-            </R.Col>
-            <R.Col sm={4} md={3}>
+            </Col>
+            <Col sm={4} md={3}>
                 <HistoryArea />
-            </R.Col>
-        </R.Row>
-    </R.Grid>
+            </Col>
+        </Row>
+    </Grid>
 );
 
 

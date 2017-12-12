@@ -14,11 +14,36 @@ const initialState = {
     gameEnd: false,
 };
 
+function calculateWinner(currentHistory, boardSize){
+    const index = currentHistory.index;
+    const square = currentHistory.squares;
+    const player = currentHistory.player;
+    const max = boardSize * boardSize;
+
+    const distance  = [1,boardSize,boardSize+1,boardSize-1];
+
+    for(let j = 0; j < 4; j++){
+        let count = 1;
+        let d = distance[j];
+        for(let i = index + d; i < index + 5 * d; i += d){
+            if(i >= max || square[i] !== player)
+                break;
+            count++;
+        }
+        for(let i = index - d; i > index - 5 * d; i-=d[j]){
+            if(i < 0 || square[i] !== player)
+                break;
+            count++;
+        }
+        if(count >= 5)
+            return true;
+    }
+}
+
 const gameInfo = (state = initialState, action) => {
     //console.log(state);
     switch (action.type) {
         case type.JUMP_TODO:
-
             return{
                 ...state,
                 stepNumber: action.step,
@@ -28,8 +53,8 @@ const gameInfo = (state = initialState, action) => {
             return{
                 ...state,
                 history: [{
-                    squares: new Array(action.size * action.size).fill(null),
-                    index: null,
+                    squares: new Array(action.size * action.size).fill(""),
+                    index: -1,
                     player: "unknown",
                 }],
                 boardSize: action.size,
@@ -44,13 +69,15 @@ const gameInfo = (state = initialState, action) => {
             const squares = current.squares.slice();
             squares[action.index] = state.xIsNext? "X" : "O";
 
+            let endgame = calculateWinner(squares,state.boardSize);
             return{
                 ...state,
                 history: history.concat([{squares:squares,
-                                            index: action.index,
-                                            player: state.xIsNext? "X" : "O"}]),
+                    index: action.index,
+                    player: state.xIsNext? "X" : "O"}]),
                 stepNumber: state.stepNumber + 1,
                 xIsNext: !state.xIsNext,
+                gameEnd: endgame
             };
         default:
             return state;

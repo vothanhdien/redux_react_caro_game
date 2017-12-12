@@ -22,3 +22,12 @@ body {
   content: "";
   display: table;
 }
+
+button.boldElement{
+  font-weight: bold;
+}
+
+.ul-none-disc{
+  text-decoration: none;
+  list-style-type: none;
+}

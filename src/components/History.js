@@ -4,14 +4,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const History = ({ onClick,text }) =>{
-    return(
-        <li>
-            <button onClick={onClick} className="btn btn-primary">
-                {text}
-            </button>
-        </li>
-    )
+const History = ({ onClick,text}) =>{
+    // if(isbold){
+    //     return(
+    //         <li>
+    //             <button onClick={onClick} className="btn btn-primary" style={{fontWeight: 'bold'}}>
+    //                 {text}
+    //             </button>
+    //         </li>
+    //     )
+    // }else{
+        return(
+            <li>
+                <button onClick={onClick} className="btn btn-primary">
+                    {text}
+                </button>
+            </li>
+        )
+    // }
 };
 
 History.propTypes = {

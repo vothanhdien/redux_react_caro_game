@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import Row from './Row'
+import BoardRow from './BoardRow'
 
 const Board = ({ gameInfo, onSquareClick }) => {
 
@@ -19,12 +19,12 @@ const Board = ({ gameInfo, onSquareClick }) => {
         }
         listRow.push(tmp);
     }
-    console.log(listRow);
+
     return(
         <div className="board-row">
             {
                 listRow.map((row,move) => (
-                    <Row key={"board" + move} irow={move * n} squares={row} onSquareClick={(id)=> onSquareClick(id)}/>
+                    <BoardRow key={"board" + move} irow={move * n} squares={row} onSquareClick={(id)=> onSquareClick(id)}/>
                     )
                 )
             }

@@ -7,9 +7,9 @@ import Square from './Square'
 
 
 
-const Row = ({irow, squares ,onSquareClick})=>{
-    console.log(irow);
-    console.log(squares);
+const BoardRow = ({irow, squares ,onSquareClick})=>{
+    // console.log(irow);
+    // console.log(squares);
     return(
         <div className="board-row" >
             {
@@ -22,10 +22,10 @@ const Row = ({irow, squares ,onSquareClick})=>{
     )
 };
 
-Row.propTypes = {
+BoardRow.propTypes = {
     irow: PropTypes.number.isRequired,
     squares: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     onSquareClick: PropTypes.func.isRequired
 };
 
-export default Row;
+export default BoardRow;
