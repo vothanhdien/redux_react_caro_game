@@ -62,7 +62,7 @@ const HistoryList = ({ gameInfo, historyInfo, onJumpClick, onChangeOrderClick })
 
     return(
         <div className="game-info">
-            <h1><strong>{ status }</strong></h1>
+            <h2><strong>{ status }</strong></h2>
             <button onClick={()=>onChangeOrderClick()}>Change order</button>
             <ul className="ul-none-disc">
                 {moves}

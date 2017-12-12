@@ -8,7 +8,6 @@ import ChangeSize from '../containers/ChangeSize'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 const Game = () => (
     <div className="container">
-        <div className="row">  asdasd</div>
         <div className="row">
             <ChangeSize/>
         </div>
