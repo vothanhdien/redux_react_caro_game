@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import Square from './Square'
 
 
-
 const BoardRow = ({irow, squares ,onSquareClick})=>{
     // console.log(irow);
     // console.log(squares);

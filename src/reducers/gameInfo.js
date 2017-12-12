@@ -2,6 +2,7 @@
  * Created by vtdien on 12/11/2017.
  */
 import * as type from '../constrants/ActionTypes';
+import {calculateWinner}from '../constrants/ActionTypes'
 const initialState = {
     history :[{
         squares: new Array(25).fill(""),
@@ -41,7 +42,15 @@ const gameInfo = (state = initialState, action) => {
             const history = state.history.slice(0,state.stepNumber + 1);
             const current = history[state.stepNumber];
             const squares = current.squares.slice();
+            let winner  = calculateWinner(squares,current.index);
+            if(winner)
+                return {
+                    ...state
+                };
+
             squares[action.index] = state.xIsNext? "X" : "O";
+
+
             //console.log(winner);
             return{
                 ...state,

@@ -24,7 +24,7 @@ const Board = ({ gameInfo, onSquareClick }) => {
         <div className="board-row">
             {
                 listRow.map((row,move) => (
-                    <BoardRow key={"board" + move} irow={move * n} squares={row} onSquareClick={(id)=> onSquareClick(id)}/>
+                    <BoardRow key={"board" + move} irow={move * n} squares={row} onSquareClick={(id)=>{ onSquareClick(id)} }/>
                     )
                 )
             }

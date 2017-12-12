@@ -8,7 +8,7 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const JUMP_TODO = 'JUMP_TODO';
 export const RESIZE_TODO = 'RESIZE_TODO';
 export const CHANGE_ORDER = 'CHANGE_ORDER';
-
+export var winner = "";
 
 
 //----------------------------------------------------------
