@@ -34,3 +34,7 @@ button.boldElement{
 .highlight{
   background-color: yellow;
 }
+.btn{
+  padding: 5px;
+  margin: 5px;
+}

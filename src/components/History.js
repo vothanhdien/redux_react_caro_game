@@ -16,7 +16,7 @@ const History = ({ onClick,text,isbold}) =>{
     }else{
         return(
             <li>
-                <button onClick={onClick} className="btn btn-primary">
+                <button onClick={onClick} className="btn btn-default">
                     {text}
                 </button>
             </li>

@@ -9,7 +9,7 @@ import {calculateWinner, deHighLight}from '../constrants/ActionTypes'
 const HistoryList = ({ gameInfo, historyInfo, onJumpClick, onChangeOrderClick }) => {
     const width = gameInfo.boardSize;
     const current = gameInfo.history[gameInfo.stepNumber];
-    const length = gameInfo.history.length;
+
    // console.log(gameInfo.stepNumber);
     const winner  = calculateWinner(current.squares,current.index);
 

@@ -21,6 +21,7 @@ let ChangeSize=({dispatch})=>{
                     newSize.value = ''
                 }}
             >
+                <span>BoardSize: </span>
                 <input type="number" ref={node =>{
                     newSize = node;
                 }}/>

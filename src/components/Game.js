@@ -5,21 +5,23 @@ import React from 'react'
 import HistoryArea from '../containers/clickOnHistory'
 import BoardArea from '../containers/clickOnBoard'
 import ChangeSize from '../containers/ChangeSize'
-import { Row, Grid, Col} from 'react-bootstrap'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 const Game = () => (
-    <Grid>
-        <Row>
+    <div className="container">
+        <div className="row">  asdasd</div>
+        <div className="row">
             <ChangeSize/>
-        </Row>
-        <Row>
-            <Col sm={8} md={9}>
+        </div>
+        <br/>
+        <div className="row">
+            <div className="col-md-9">
                 <BoardArea />
-            </Col>
-            <Col sm={4} md={3}>
+            </div>
+            <div className="col-md-3">
                 <HistoryArea />
-            </Col>
-        </Row>
-    </Grid>
+            </div>
+        </div>
+    </div>
 );
 
 
