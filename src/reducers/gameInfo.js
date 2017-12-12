@@ -14,36 +14,12 @@ const initialState = {
     gameEnd: false,
 };
 
-function calculateWinner(currentHistory, boardSize){
-    const index = currentHistory.index;
-    const square = currentHistory.squares;
-    const player = currentHistory.player;
-    const max = boardSize * boardSize;
-
-    const distance  = [1,boardSize,boardSize+1,boardSize-1];
-
-    for(let j = 0; j < 4; j++){
-        let count = 1;
-        let d = distance[j];
-        for(let i = index + d; i < index + 5 * d; i += d){
-            if(i >= max || square[i] !== player)
-                break;
-            count++;
-        }
-        for(let i = index - d; i > index - 5 * d; i-=d[j]){
-            if(i < 0 || square[i] !== player)
-                break;
-            count++;
-        }
-        if(count >= 5)
-            return true;
-    }
-}
-
 const gameInfo = (state = initialState, action) => {
     //console.log(state);
     switch (action.type) {
         case type.JUMP_TODO:
+
+
             return{
                 ...state,
                 stepNumber: action.step,
@@ -69,7 +45,7 @@ const gameInfo = (state = initialState, action) => {
             const squares = current.squares.slice();
             squares[action.index] = state.xIsNext? "X" : "O";
 
-            let endgame = calculateWinner(squares,state.boardSize);
+            let winner = calculateWinner(squares,current.index,state.boardSize);
             return{
                 ...state,
                 history: history.concat([{squares:squares,
@@ -77,11 +53,109 @@ const gameInfo = (state = initialState, action) => {
                     player: state.xIsNext? "X" : "O"}]),
                 stepNumber: state.stepNumber + 1,
                 xIsNext: !state.xIsNext,
-                gameEnd: endgame
+                gameEnd: winner !== null
             };
         default:
             return state;
     }
 };
+
+function calculateWinner(squares, index, boardSize) {
+    const width = boardSize;
+    const row = parseInt(index/boardSize,0);
+    const col = index%boardSize;
+    if(!squares[index])
+        return null;
+    let winner = null;
+
+    // hang ngang
+    let list = [];
+    for(let i = row * width; i < row * width + width; i++) {
+        list.push({
+            id: "square" + i,
+            value: squares[i],
+        });
+    }
+    winner = containWin(list,squares[index]);
+
+    if(winner){
+        return list;
+    }
+
+    //hang doc
+    list=[];
+
+    for(let i = col; i < width * width; i += width){
+        list.push({
+            id: "square" + i,
+            value: squares[i],
+        });
+    }
+
+    winner = containWin(list,squares[index]);
+    if(winner)
+        return list;
+
+
+    let min = col > row ? row: col;
+    let max = col > row ? col: row;
+    let d = width - max - 1;
+    //cheo xuoi
+    list =[];
+
+    let minval = (row - min) * width + (col - min);
+
+    let maxval = (row + d) * width + (col + d);
+
+    for(let i = minval ; i <= maxval; i+= width + 1){
+        list.push({
+            id: "square" + i,
+            value: squares[i],
+        });
+    }
+
+    winner = containWin(list,squares[index]);
+    if(winner)
+        return list;
+
+    // cheo nguoc
+    list = [];
+    if(row + col < width){
+        minval = col + row;
+        maxval = (col + row) * width;
+    }else{
+        d = width - col - 1;
+        let newrow = row - d;
+        minval = newrow * width + width - 1;
+        maxval = width * (width - 1) + newrow;
+    }
+
+    for(let i = minval ; i <= maxval; i += width - 1){
+        list.push({
+            id: "square" + i,
+            value: squares[i],
+        });
+    }
+    winner = containWin(list,squares[index]);
+    if(winner)
+        return list;
+    // khong thang
+    return winner;
+}
+function containWin(listArray, player) {
+    if(listArray.length < 5)
+        return null;
+    let count = 0;
+    for(let i  = 0; i < listArray.length;i++){
+        if(listArray[i].value === player){
+            if(count >= 4) {
+                return player;
+            }
+            count += 1;
+        }else{
+            count = 0;
+        }
+    }
+}
 
 export default gameInfo
