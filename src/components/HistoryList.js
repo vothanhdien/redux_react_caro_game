@@ -4,14 +4,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import History from './History'
+import {calculateWinner, deHighLight}from '../constrants/ActionTypes'
 
 const HistoryList = ({ gameInfo, historyInfo, onJumpClick, onChangeOrderClick }) => {
     const width = gameInfo.boardSize;
     const current = gameInfo.history[gameInfo.stepNumber];
-    console.log(gameInfo.stepNumber);
+    const length = gameInfo.history.length;
+   // console.log(gameInfo.stepNumber);
+    const winner  = calculateWinner(current.squares,current.index);
+
+
     let status;
-    if(gameInfo.gameEnd){
-        status = "The winner is " + current.player;
+    if(winner){
+        status = "The winner is " + winner;
     }else{
         status = 'Next player: ' + (gameInfo.xIsNext? "X" : "O");
     }
@@ -23,11 +28,11 @@ const HistoryList = ({ gameInfo, historyInfo, onJumpClick, onChangeOrderClick })
                 str = "Go to move #" + move + " " + step.player + "(" + parseInt(step.index / width, 0) + "," + step.index % width + ")";
             if(move === gameInfo.stepNumber){
                 return (
-                    <History key={move} onClick={() => onJumpClick(move)} text={str} isbold = {true}/>
+                    <History key={move} onClick={() =>{deHighLight(); onJumpClick(move)}} text={str} isbold = {true}/>
                 )
              } else{
                 return(
-                    <History key={move} onClick={()=>onJumpClick(move)} text={str} isbold = {false}/>
+                    <History key={move} onClick={() =>{deHighLight(); onJumpClick(move)}} text={str} isbold = {false}/>
                 )
             }
         });
@@ -43,13 +48,13 @@ const HistoryList = ({ gameInfo, historyInfo, onJumpClick, onChangeOrderClick })
             // return (
             //     <History key={move} onClick={() => onJumpClick(newMove)} text={desc}/>
             // );
-            if(move === 0){
+            if(move === (length - gameInfo.stepNumber - 1)){
                 return (
-                    <History key={move} onClick={() => onJumpClick(newMove)} text={desc} isbold = {true}/>
+                    <History key={move} onClick={() =>{deHighLight(); onJumpClick(newMove)}} text={desc} isbold = {true}/>
                 )
             } else{
                 return(
-                    <History key={move} onClick={()=>onJumpClick(newMove)} text={desc} isbold = {false}/>
+                    <History key={move} onClick={()=>{deHighLight();onJumpClick(newMove)}} text={desc} isbold = {false}/>
                 )
             }
         });
@@ -65,6 +70,7 @@ const HistoryList = ({ gameInfo, historyInfo, onJumpClick, onChangeOrderClick })
         </div>
     )
 };
+
 
 HistoryList.propTypes = {
     gameInfo: PropTypes.shape({

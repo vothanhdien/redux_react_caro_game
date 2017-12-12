@@ -31,3 +31,6 @@ button.boldElement{
   text-decoration: none;
   list-style-type: none;
 }
+.highlight{
+  background-color: yellow;
+}

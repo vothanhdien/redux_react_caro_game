@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 const Square = (props)=>{
     return (
-        <button className="square" onClick={props.onSquareClick}>
+        <button id={"square"+props.index}  className="square" onClick={props.onSquareClick}>
             {props.text}
         </button>
     );

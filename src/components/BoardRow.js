@@ -14,7 +14,7 @@ const BoardRow = ({irow, squares ,onSquareClick})=>{
         <div className="board-row" >
             {
                 squares.map((square,move) =>(
-                        <Square key={move + irow} text={square} onSquareClick={()=>{if(squares[move]==="")onSquareClick(move + irow)}}/>
+                        <Square key={move + irow} index={move + irow} text={square} onSquareClick={()=>{if(squares[move]==="")onSquareClick(move + irow)}}/>
                     )
                 )
             }
